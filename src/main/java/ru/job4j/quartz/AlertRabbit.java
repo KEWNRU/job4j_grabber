@@ -22,9 +22,9 @@ public class AlertRabbit {
             Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
             scheduler.start();
             Class.forName(getProperty().getProperty("driver-class-name"));
-            Connection connection = DriverManager.getConnection(getProperty().getProperty("url")
-                    , getProperty().getProperty("username")
-                    , getProperty().getProperty("password"));
+            Connection connection = DriverManager.getConnection(getProperty().getProperty("url"),
+                    getProperty().getProperty("username"),
+                    getProperty().getProperty("password"));
             JobDataMap data = new JobDataMap();
             data.put("connection", connection);
             JobDetail job = newJob(Rabbit.class)
