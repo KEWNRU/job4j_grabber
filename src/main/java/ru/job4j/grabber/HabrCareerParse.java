@@ -28,8 +28,22 @@ public class HabrCareerParse {
                 String vacancyName = titleElement.text();
                 String dateElement = date.attr("datetime");
                 String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
-                System.out.printf("Добавлено: %s %s %s %n", dateElement, vacancyName, link);
+                String description = retrieveDescription(link);
+                System.out.printf("Добавлено: %s %s %s %n %s", dateElement, vacancyName, link, description);
             });
         }
+    }
+
+    private static String retrieveDescription(String link) {
+        String description = "";
+        Connection connection = Jsoup.connect(link);
+        try {
+            Document document = connection.get();
+            Elements row = document.select(".faded-content__container");
+            description = row.first().text();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return description;
     }
 }
