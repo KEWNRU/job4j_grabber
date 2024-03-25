@@ -26,15 +26,13 @@ public class Post {
         if (!(o instanceof Post post)) {
             return false;
         }
-        return id == post.id && Objects.equals(created, post.created)
-                && Objects.equals(title, post.title)
-                && Objects.equals(link, post.link)
-                && Objects.equals(description, post.description);
+        return id == post.id
+                && Objects.equals(link, post.link);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(created, id, title, link, description);
+        return Objects.hash(id, link);
     }
 
     @Override
