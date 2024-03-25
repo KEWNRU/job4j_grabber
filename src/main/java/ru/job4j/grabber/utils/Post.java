@@ -20,12 +20,16 @@ public class Post {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Post post)) return false;
-        return id == post.id && Objects.equals(created, post.created) &&
-                Objects.equals(title, post.title) &&
-                Objects.equals(link, post.link) &&
-                Objects.equals(description, post.description);
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Post post)) {
+            return false;
+        }
+        return id == post.id && Objects.equals(created, post.created)
+                && Objects.equals(title, post.title)
+                && Objects.equals(link, post.link)
+                && Objects.equals(description, post.description);
     }
 
     @Override
@@ -35,12 +39,12 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" +
-                "created=" + created +
-                ", id=" + id +
-                ", title='" + title + '\'' +
-                ", link='" + link + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return "Post{"
+                + "created=" + created
+                + ", id=" + id
+                + ", title='" + title + '\''
+                + ", link='" + link + '\''
+                + ", description='" + description + '\''
+                + '}';
     }
 }
