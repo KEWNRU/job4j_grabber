@@ -17,7 +17,7 @@ public class PsqlStore implements Store {
     private Connection connection;
 
     public PsqlStore(Properties config) throws SQLException, ClassNotFoundException {
-        try (InputStream in = PsqlStore.class.getClassLoader().getResourceAsStream("rabbit.properties")) {
+        try (InputStream in = PsqlStore.class.getClassLoader().getResourceAsStream("grabber.properties")) {
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
             connection = DriverManager.getConnection(config.getProperty("url"),
@@ -76,18 +76,5 @@ public class PsqlStore implements Store {
         if (connection != null) {
             connection.close();
         }
-    }
-
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        Properties properties = new Properties();
-        HabrCareerParse parse = new HabrCareerParse(new HabrCareerDateTimeParser());
-        PsqlStore psqlStore = new PsqlStore(properties);
-        List<Post> con = parse.list("https://career.habr.com/vacancies?page=&q=Java+developer&type=all");
-        for (Post post : con) {
-            psqlStore.save(post);
-        }
-        System.out.println(psqlStore.getAll());
-        System.out.println(psqlStore.findById(1));
-
     }
 }

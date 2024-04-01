@@ -62,11 +62,4 @@ public class HabrCareerParse implements Parse {
         }
         return description;
     }
-
-    public static void main(String[] args) {
-        String fullLink = "%s%s%d%s".formatted(SOURCE_LINK, PREFIX, PAGE, SUFFIX);
-        HabrCareerParse parser = new HabrCareerParse(new HabrCareerDateTimeParser());
-        List<Post> post = parser.list(fullLink);
-        post.forEach(System.out::println);
-    }
 }
