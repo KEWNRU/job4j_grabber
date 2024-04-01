@@ -87,6 +87,7 @@ public class PsqlStore implements Store {
             psqlStore.save(post);
         }
         System.out.println(psqlStore.getAll());
+        System.out.println(psqlStore.findById(1));
 
     }
 }
