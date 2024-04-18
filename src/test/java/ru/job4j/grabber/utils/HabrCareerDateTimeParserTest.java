@@ -1,13 +1,13 @@
 package ru.job4j.grabber.utils;
 
-import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class HabrCareerDateTimeParserTest {
     @Test
