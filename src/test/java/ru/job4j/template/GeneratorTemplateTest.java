@@ -12,7 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 @Disabled
 public class GeneratorTemplateTest {
     @Test
-    public void TheMapHasAKeyAndAValue() {
+    public void theMapHasAKeyAndAValue() {
         GeneratorTemplate generatorTemplate = new GeneratorTemplate();
         String template = "I am a ${name}";
         Map<String, String> map = new HashMap<>();
@@ -22,7 +22,7 @@ public class GeneratorTemplateTest {
     }
 
     @Test
-    public void TheTemplateContainsKeysThatAreNotInTheMap() {
+    public void theTemplateContainsKeysThatAreNotInTheMap() {
         GeneratorTemplate generatorTemplate = new GeneratorTemplate();
         String template = "I am a ${name}";
         Map<String, String> map = new HashMap<>();
@@ -31,7 +31,7 @@ public class GeneratorTemplateTest {
     }
 
     @Test
-    public void ThereIsAnExtraKeyInTheCard() {
+    public void thereIsAnExtraKeyInTheCard() {
         GeneratorTemplate generatorTemplate = new GeneratorTemplate();
         String template = "I am a ${name}";
         Map<String, String> map = new HashMap<>();
