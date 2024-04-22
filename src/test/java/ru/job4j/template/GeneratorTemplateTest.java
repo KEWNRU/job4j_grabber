@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 @Disabled
+
 public class GeneratorTemplateTest {
     @Test
     public void theMapHasAKeyAndAValue() {
