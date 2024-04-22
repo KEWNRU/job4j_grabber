@@ -16,6 +16,7 @@ public class Cinema3D implements Cinema {
     public void add(Session session) {
 
     }
+
     @Override
     public List<Session> find(Predicate<Session> filter) {
         List<Session> sessions = new ArrayList<>();
