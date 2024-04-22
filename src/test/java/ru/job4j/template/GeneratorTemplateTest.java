@@ -1,6 +1,5 @@
 package ru.job4j.template;
 
-import org.assertj.core.api.StringAssert;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
 
@@ -13,7 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 @Disabled
 public class GeneratorTemplateTest {
     @Test
-    public void the_map_has_a_key_and_a_value() {
+    public void TheMapHasAKeyAndAValue() {
         GeneratorTemplate generatorTemplate = new GeneratorTemplate();
         String template = "I am a ${name}";
         Map<String, String> map = new HashMap<>();
@@ -23,7 +22,7 @@ public class GeneratorTemplateTest {
     }
 
     @Test
-    public void The_template_contains_keys_that_are_not_in_the_map() {
+    public void TheTemplateContainsKeysThatAreNotInTheMap() {
         GeneratorTemplate generatorTemplate = new GeneratorTemplate();
         String template = "I am a ${name}";
         Map<String, String> map = new HashMap<>();
@@ -32,7 +31,7 @@ public class GeneratorTemplateTest {
     }
 
     @Test
-    public void there_is_an_extra_key_in_the_card() {
+    public void ThereIsAnExtraKeyInTheCard() {
         GeneratorTemplate generatorTemplate = new GeneratorTemplate();
         String template = "I am a ${name}";
         Map<String, String> map = new HashMap<>();
