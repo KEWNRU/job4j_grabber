@@ -15,7 +15,6 @@ import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 public class AccountingDepartmentTest {
     @Test
     public void testAccountingDepartment() {

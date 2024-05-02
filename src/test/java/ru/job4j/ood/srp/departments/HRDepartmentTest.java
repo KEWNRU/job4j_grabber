@@ -1,8 +1,5 @@
 package ru.job4j.ood.srp.departments;
-
 import org.junit.Test;
-import ru.job4j.ood.srp.formatter.DateTimeParser;
-import ru.job4j.ood.srp.formatter.ReportDateTimeParser;
 import ru.job4j.ood.srp.model.Employee;
 import ru.job4j.ood.srp.report.Report;
 import ru.job4j.ood.srp.store.MemoryStore;
@@ -13,12 +10,10 @@ import java.util.TreeSet;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 public class HRDepartmentTest {
 
     @Test
     public void testHRDepartment() {
-        TreeSet<Employee> employees = new TreeSet<>(Comparator.comparingDouble(Employee::getSalary));
         MemoryStore store = new MemoryStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
