@@ -15,7 +15,6 @@ public class HRDepartment implements Report {
 
     public HRDepartment(Store store) {
         this.store = store;
-
     }
 
     @Override

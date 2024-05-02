@@ -15,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class HRDepartmentTest {
+
     @Test
     public void testHRDepartment() {
         TreeSet<Employee> employees = new TreeSet<>(Comparator.comparingDouble(Employee::getSalary));

@@ -25,7 +25,6 @@ public class AccountingDepartment implements Report {
 
     @Override
     public String generate(Predicate<Employee> filter) {
-        InMemoryCurrencyConverter converter = new InMemoryCurrencyConverter();
         StringBuilder text = new StringBuilder();
         text.append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator());
