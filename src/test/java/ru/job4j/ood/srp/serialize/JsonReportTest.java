@@ -6,9 +6,10 @@ import ru.job4j.ood.srp.formatter.ReportDateTimeParser;
 import ru.job4j.ood.srp.model.Employee;
 import ru.job4j.ood.srp.store.MemoryStore;
 import ru.job4j.ood.srp.store.Store;
-import java.util.Calendar;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import java.util.Calendar;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class JsonReportTest {
 
@@ -23,19 +24,19 @@ class JsonReportTest {
         store.add(worker2);
         JsonReport jsonReport = new JsonReport(store);
         String expected = "[\n"
-                +  "  {\n"
-                +  "    \"name\": \"Ivan\",\n"
-                +  "    \"hired\": \"" + parser.parse(now) + "\",\n"
-                +  "    \"fired\": \"" + parser.parse(now) + "\",\n"
-                +  "    \"salary\": 100.0\n"
-                +  "  },\n"
-                +  "  {\n"
-                +  "    \"name\": \"Sergey\",\n"
-                +  "    \"hired\": \"" + parser.parse(now) + "\",\n"
-                +  "    \"fired\": \"" + parser.parse(now) + "\",\n"
-                +  "    \"salary\": 200.0\n"
-                +  "  }\n"
-                +  "]";
+                + "  {\n"
+                + "    \"name\": \"Ivan\",\n"
+                + "    \"hired\": \"" + parser.parse(now) + "\",\n"
+                + "    \"fired\": \"" + parser.parse(now) + "\",\n"
+                + "    \"salary\": 100.0\n"
+                + "  },\n"
+                + "  {\n"
+                + "    \"name\": \"Sergey\",\n"
+                + "    \"hired\": \"" + parser.parse(now) + "\",\n"
+                + "    \"fired\": \"" + parser.parse(now) + "\",\n"
+                + "    \"salary\": 200.0\n"
+                + "  }\n"
+                + "]";
         assertThat(jsonReport.generate(employee -> true)).isEqualTo(expected);
     }
 }
