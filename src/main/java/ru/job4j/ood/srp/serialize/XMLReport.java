@@ -24,12 +24,17 @@ public class XMLReport implements Report {
         xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
         xml.append("<employees>\n");
         for (Employee employee : store.findBy(filter)) {
-            xml.append("\t<employee>\n")
-                    .append("\t\t<name>").append(employee.getName()).append("</name>\n")
-                    .append("\t\t<hired>").append(dateTimeParser.parse(employee.getHired())).append("</hired>\n")
-                    .append("\t\t<fired>").append(dateTimeParser.parse(employee.getFired())).append("</fired>\n")
-                    .append("\t\t<salary>").append(employee.getSalary()).append("</salary>\n")
-                    .append("\t</employee>\n");
+            xml.append("""
+                        <employee>
+                            <name>%s</name>
+                            <hired>%s</hired>
+                            <fired>%s</fired>
+                            <salary>%s</salary>
+                        </employee>
+                    """.formatted(employee.getName(),
+                    dateTimeParser.parse(employee.getHired()),
+                    dateTimeParser.parse(employee.getFired()),
+                    employee.getSalary()));
         }
         xml.append("</employees>");
         return xml.toString();
