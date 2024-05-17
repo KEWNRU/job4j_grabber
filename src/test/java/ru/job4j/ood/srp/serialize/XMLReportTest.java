@@ -9,6 +9,7 @@ import ru.job4j.ood.srp.report.Report;
 import ru.job4j.ood.srp.store.MemoryStore;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.stream.XMLReporter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -18,7 +19,6 @@ class XMLReportTest {
     @Test
     void whenGenerated() throws JAXBException {
         MemoryStore store = new MemoryStore();
-        DateTimeParser parser = new ReportDateTimeParser();
         Employee employee = new Employee("John Doe",
                 new GregorianCalendar(2023, Calendar.JUNE, 8, 17, 41),
                 new GregorianCalendar(2023, Calendar.JUNE, 8, 17, 41),
@@ -29,9 +29,9 @@ class XMLReportTest {
                 6000.0);
         store.add(employee);
         store.add(employee1);
-        Report report = new XMLReport(store, parser);
+        Report report = new XMLReport(store);
         String expect = """
-                <?xml version="1.0" encoding="UTF-8"?>
+                <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                 <employees>
                     <employee>
                         <name>John Doe</name>
@@ -45,7 +45,8 @@ class XMLReportTest {
                         <fired>08:06:2023 17:41</fired>
                         <salary>6000.0</salary>
                     </employee>
-                </employees>""";
+                </employees>
+                """;
         assertThat(report.generate(em -> true)).isEqualTo(expect);
     }
 }
