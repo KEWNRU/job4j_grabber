@@ -1,14 +1,15 @@
 package ru.job4j.ood.srp.serialize;
 
-import ru.job4j.ood.srp.formatter.ReportDateTimeParser;
 import ru.job4j.ood.srp.model.Employee;
 import ru.job4j.ood.srp.report.Report;
 import ru.job4j.ood.srp.store.Store;
 
-import java.util.Calendar;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.function.Predicate;
-
-import ru.job4j.ood.srp.formatter.DateTimeParser;
 
 public class XMLReport implements Report {
     private final Store store;
@@ -18,25 +19,19 @@ public class XMLReport implements Report {
     }
 
     @Override
-    public String generate(Predicate<Employee> filter) {
-        DateTimeParser dateTimeParser = new ReportDateTimeParser();
-        StringBuilder xml = new StringBuilder();
-        xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n");
-        xml.append("<employees>\n");
-        for (Employee employee : store.findBy(filter)) {
-            xml.append("""
-                        <employee>
-                            <name>%s</name>
-                            <hired>%s</hired>
-                            <fired>%s</fired>
-                            <salary>%s</salary>
-                        </employee>
-                    """.formatted(employee.getName(),
-                    dateTimeParser.parse(employee.getHired()),
-                    dateTimeParser.parse(employee.getFired()),
-                    employee.getSalary()));
+    public String generate(Predicate<Employee> filter) throws JAXBException {
+        StringBuilder  sb = new StringBuilder();
+        Employees employee = new Employees(store.findBy(filter));
+        try (StringWriter stringWriter = new StringWriter()) {
+            JAXBContext context = JAXBContext.newInstance(Employees.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            marshaller.marshal(employee, stringWriter);
+            String xml = stringWriter.toString();
+            sb.append(xml);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        xml.append("</employees>\n");
-        return xml.toString();
+        return sb.toString();
     }
 }

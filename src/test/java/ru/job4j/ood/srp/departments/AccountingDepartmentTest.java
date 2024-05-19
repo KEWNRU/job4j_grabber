@@ -11,13 +11,15 @@ import ru.job4j.ood.srp.report.Report;
 
 import ru.job4j.ood.srp.store.MemoryStore;
 
+import javax.xml.bind.JAXBException;
+import java.io.IOException;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountingDepartmentTest {
     @Test
-    public void testAccountingDepartment() {
+    public void testAccountingDepartment() throws JAXBException, IOException {
         MemoryStore store = new MemoryStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);

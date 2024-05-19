@@ -9,6 +9,7 @@ import ru.job4j.ood.srp.store.MemoryStore;
 import ru.job4j.ood.srp.store.Store;
 
 import javax.xml.bind.JAXBException;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -17,7 +18,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class JsonReportTest {
 
     @Test
-    void whenAccountantsGenerated() throws JAXBException {
+    void whenAccountantsGenerated() throws JAXBException, IOException {
         MemoryStore store = new MemoryStore();
         Employee employee = new Employee("John Doe",
                 new GregorianCalendar(2023, Calendar.JUNE, 8, 17, 41),

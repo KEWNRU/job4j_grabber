@@ -8,6 +8,8 @@ import ru.job4j.ood.srp.report.Report;
 import ru.job4j.ood.srp.report.ReportEngine;
 import ru.job4j.ood.srp.store.MemoryStore;
 
+import javax.xml.bind.JAXBException;
+import java.io.IOException;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ITDepartmentTest {
     @Test
-    public void testItDepartment() {
+    public void testItDepartment() throws JAXBException, IOException {
         MemoryStore store = new MemoryStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
