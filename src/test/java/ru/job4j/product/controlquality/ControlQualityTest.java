@@ -24,6 +24,7 @@ public class ControlQualityTest {
         double result = controlQuality.getRemainderExpiryDate(food);
         Assertions.assertEquals(50.0, result, 0.01);
     }
+
     @Test
     public void testExaminationWarehouse() {
         List<Store> storages = new ArrayList<>();
@@ -41,6 +42,7 @@ public class ControlQualityTest {
         controlQuality.examination(food);
         Assertions.assertEquals(food, warehouse.findBy(food));
     }
+
     @Test
     public void testExaminationShop() {
         List<Store> storages = new ArrayList<>();
@@ -58,6 +60,7 @@ public class ControlQualityTest {
         controlQuality.examination(food);
         Assertions.assertEquals(food, shop.findBy(food));
     }
+
     @Test
     public void testExaminationShopDiscount() {
         List<Store> storages = new ArrayList<>();
@@ -75,6 +78,7 @@ public class ControlQualityTest {
         controlQuality.examination(food);
         Assertions.assertEquals(food, shop.findBy(food));
     }
+
     @Test
     public void testExaminationShopTrash() {
         List<Store> storages = new ArrayList<>();
@@ -92,6 +96,7 @@ public class ControlQualityTest {
         controlQuality.examination(food);
         Assertions.assertEquals(food, trash.findBy(food));
     }
+
     @Test
     public void testExaminationWarehouseAndNull() {
         List<Store> storages = new ArrayList<>();
