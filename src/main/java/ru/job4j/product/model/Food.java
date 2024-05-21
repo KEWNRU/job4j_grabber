@@ -62,8 +62,9 @@ public class Food {
         this.discount = discount;
     }
 
-    public int sale() {
-        return price / 100 * discount;
+    public void sale() {
+        this.price = (int) (price - ((double) price / 100 * discount));
+
     }
 
     public int getId() {

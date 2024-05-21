@@ -76,7 +76,7 @@ public class ControlQualityTest {
                 10, 20, 1);
         ControlQuality controlQuality = new ControlQuality(storages);
         controlQuality.examination(food);
-        Assertions.assertEquals(food, shop.findBy(food));
+        Assertions.assertEquals(8, shop.findBy(food).getPrice());
     }
 
     @Test
