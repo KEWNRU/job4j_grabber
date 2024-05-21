@@ -18,11 +18,11 @@ public class ControlQualityTest {
     public void testGetRemainderExpiryDate() {
         Food food = new Food("яблоко",
                 LocalDate.of(2024, 5, 30),
-                LocalDate.of(2024, 5, 12),
+                LocalDate.of(2024, 5, 11),
                 10, 0, 1);
         ControlQuality controlQuality = new ControlQuality(new ArrayList<>());
         double result = controlQuality.getRemainderExpiryDate(food);
-        Assertions.assertEquals(50.0, result, 0.01);
+        Assertions.assertEquals(42.1, result, 0.01);
     }
 
     @Test
@@ -89,7 +89,7 @@ public class ControlQualityTest {
         storages.add(shop);
         storages.add(trash);
         Food food = new Food("Хлеб",
-                LocalDate.of(2024, 5, 21),
+                LocalDate.of(2024, 5, 22),
                 LocalDate.of(2024, 5, 10),
                 10, 0, 1);
         ControlQuality controlQuality = new ControlQuality(storages);
