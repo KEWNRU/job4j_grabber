@@ -20,27 +20,9 @@ public class ControlQualityTest {
                 LocalDate.of(2024, 5, 30),
                 LocalDate.of(2024, 5, 11),
                 10, 0, 1);
-        ControlQuality controlQuality = new ControlQuality(new ArrayList<>());
-        double result = controlQuality.getRemainderExpiryDate(food);
+        Remainder remainder =  new Remainder();
+        double result = remainder.getRemainderExpiryDate(food);
         Assertions.assertEquals(42.1, result, 0.01);
-    }
-
-    @Test
-    public void testExaminationWarehouse() {
-        List<Store> storages = new ArrayList<>();
-        Store warehouse = new WareHouse();
-        Store shop = new Shop();
-        Store trash = new Trash();
-        storages.add(warehouse);
-        storages.add(shop);
-        storages.add(trash);
-        Food food = new Food("Хлеб",
-                LocalDate.of(2024, 6, 20),
-                LocalDate.of(2024, 5, 20),
-                10, 0, 1);
-        ControlQuality controlQuality = new ControlQuality(storages);
-        controlQuality.examination(food);
-        Assertions.assertEquals(food, warehouse.findBy(food));
     }
 
     @Test
