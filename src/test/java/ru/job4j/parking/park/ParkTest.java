@@ -15,6 +15,7 @@ class ParkTest {
         Transport car = new Car(2);
         assertThrows(RuntimeException.class, () -> parking.add(car));
     }
+
     @Test
     void addParkCar() {
         Parking parking = new Park(2, 2);
