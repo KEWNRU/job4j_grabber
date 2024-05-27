@@ -7,35 +7,37 @@ import java.util.List;
 
 public class Park implements Parking {
 
-    private final List<Transport> parking = new ArrayList<>();
-    private int parkingTruck = 10;
-    private int parkingCar = 20;
+    private final List<Transport> carSpace = new ArrayList<>();
+    private final List<Transport> truckSpace = new ArrayList<>();
+    private final int parkingTruck;
+    private final int parkingCar;
 
-    public List<Transport> getParking() {
-        return parking;
-    }
-
-    public void setParkingTruck(int parkingTruck) {
+    public Park(int parkingTruck, int parkingCar) {
         this.parkingTruck = parkingTruck;
+        this.parkingCar = parkingCar;
     }
 
     @Override
-    public void addCar(Transport car) {
-        if (car.getSize() == 1 && parkingCar != 0) {
-            parking.add(car);
-            parkingCar--;
-        }
+    public int getCountParkingBusy() {
+        return carSpace.size() + truckSpace.size();
     }
 
     @Override
-    public void addTruck(Transport truck) {
-        if (truck.getSize() > 1 && parkingTruck != 0) {
-            parking.add(truck);
-            parkingTruck--;
+    public void add(Transport car) {
+        if (parkingCar - carSpace.size() == 0 || getCountParkingBusy() == parkingCar + parkingTruck) {
+            throw new RuntimeException("Нет мест");
         }
-        if (parkingTruck == 0 && truck.getSize() > 1) {
-            parking.add(truck);
-            parkingCar -= truck.getSize();
+        if (car.getSize() == 1 && parkingCar >= carSpace.size()) {
+            carSpace.add(car);
+        }
+        if (car.getSize() > 1 && parkingTruck >= truckSpace.size()
+                && parkingTruck != 0) {
+            truckSpace.add(car);
+        } else if (car.getSize() > 1 && parkingTruck == truckSpace.size()
+                && car.getSize() <= parkingCar - carSpace.size()) {
+            for (int i = 0; i < car.getSize(); i++) {
+                carSpace.add(car);
+            }
         }
     }
 }

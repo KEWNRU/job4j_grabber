@@ -4,8 +4,7 @@ import ru.job4j.parking.model.Transport;
 
 public interface Parking {
 
-    void addCar(Transport car);
+    void add(Transport car);
 
-    void addTruck(Transport truck);
-
+    int getCountParkingBusy();
 }
