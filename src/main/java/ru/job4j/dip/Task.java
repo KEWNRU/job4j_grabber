@@ -22,16 +22,15 @@ public class Task {
         void execute();
     }
 
-    class DataAccess implements AOD {
+    static class DataAccess implements AOD {
         public void execute() {
             System.out.println("Hello World");
         }
     }
 
-    class Clients {
-        AOD aod = new DataAccess();
+    static class Clients {
 
-        void execute() {
+        void execute(AOD aod) {
             aod.execute();
         }
     }
