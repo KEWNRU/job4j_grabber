@@ -1,8 +1,5 @@
 package ru.job4j.product.controlquality;
 
-import ru.job4j.product.storage.Shop;
-import ru.job4j.product.storage.Trash;
-import ru.job4j.product.storage.WareHouse;
 import ru.job4j.product.store.Store;
 import ru.job4j.product.model.Food;
 
@@ -19,5 +16,9 @@ public class ControlQuality {
         for (Store store : storages) {
             store.add(food);
         }
+    }
+
+    public void resort(Food food) {
+      examination(food);
     }
 }

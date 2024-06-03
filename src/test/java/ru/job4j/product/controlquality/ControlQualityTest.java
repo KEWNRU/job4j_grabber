@@ -13,6 +13,10 @@ import ru.job4j.product.storage.WareHouse;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+
 @Disabled
 public class ControlQualityTest {
     @Test
@@ -21,7 +25,7 @@ public class ControlQualityTest {
                 LocalDate.of(2024, 5, 30),
                 LocalDate.of(2024, 5, 11),
                 10, 0, 1);
-        Remainder remainder =  new Remainder();
+        Remainder remainder = new Remainder();
         double result = remainder.getRemainderExpiryDate(food);
         Assertions.assertEquals(42.1, result, 0.01);
     }
@@ -103,5 +107,22 @@ public class ControlQualityTest {
         Assertions.assertEquals(food, warehouse.findBy(food));
         Assertions.assertNull(warehouse.findBy(food1));
     }
-}
 
+    @Test
+    public void testRestorTrash() {
+        List<Store> storages = new ArrayList<>();
+        Store warehouse = new WareHouse();
+        Store shop = new Shop();
+        Store trash = new Trash();
+        storages.add(warehouse);
+        storages.add(shop);
+        storages.add(trash);
+        Food food = new Food("Хлеб",
+                LocalDate.of(2024, 5, 20),
+                LocalDate.of(2024, 5, 20),
+                10, 0, 1);
+        ControlQuality controlQuality = new ControlQuality(storages);
+        controlQuality.resort(food);
+        Assertions.assertEquals(food, trash.findBy(food));
+    }
+}
